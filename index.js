@@ -4,46 +4,22 @@ const userInputString = prompt(
     "Please enter some flavors separated by commas.",
   );
 
+/*Split input into array. */
 const stringArray = userInputString.split(",");
 
-/* Defining the const, objects and values to be updated */
-
-const froyoFlavor = {
-    Vanilla: 0,
-    Chocolate: 0,
-    Strawberry: 0,
-    Coffee: 0,
-
-};
-
-/* This is checking my values to ensure the base 
-table data is correct. */
-
-console.log(Object.keys(froyoFlavor));
-
-console.log(Object.values(froyoFlavor));
-
-const count = Object.values(froyoFlavor);
-let totalCount = 0;
-
-for (let i = 0; i < count.length; i++) {
-  totalCount += count[i];
+/* function to count flavor occurences. */
+function countOccurence(stringArray) {
+  const counts = {};
+  for (let element of stringArray) {
+    counts[element] = counts[element] ? counts[element] + 1 : 1;
+  }
+  return counts;
 }
 
-console.log(totalCount);
+/*Count each flavor when it is entered. */
+const flavorcounts = countOccurence(stringArray);
 
-console.table(froyoFlavor);
-
-/* still working on getting the input from the user
-to update the values so the table can output. Havent figured out the function.
-
-function calculateCount(???value){
-    let total = 0;
-    for (const froyoFlavor){
-      total += ???value[count];
-    }
-    return total;
-  }
-
-  console.table(total);
-*/
+/* Shows flavor and quantity ordered in console in table form. Haven't fixed display completely. Working on it.... */
+for (const [flavor, count] of Object.entries(flavorcounts)) {
+  console.table(flavorcounts);
+}
